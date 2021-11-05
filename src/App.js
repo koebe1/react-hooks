@@ -1,12 +1,15 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import React, { useState } from "react";
+import Button from './components/button.js';
 
-function App() {
+const App = () => {
+  
+
   return (
-    <div className="App">
-
+    <div>
+     <Button/>
     </div>
   );
-}
+};
 
 export default App;
