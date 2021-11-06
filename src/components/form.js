@@ -11,6 +11,10 @@ export default function Form() {
     };
 
     window.addEventListener("mousemove", onMouseMove);
+
+    return () => {
+        window.removeEventListener('mousemove', onMouseMove)
+    }
   }, []);
 
   return (
