@@ -1,21 +1,25 @@
 import React, { useEffect } from "react";
 import { useForm } from "./useForm";
+import { useFetch } from "./useFetch";
 
 export default function Form() {
   const [values, handleChange] = useForm({ email: "", password: "" });
 
-  // gets called on every render of component by default
-  useEffect(() => {
-    const onMouseMove = e => {
-      console.log(e);
-    };
+  // set event listener with useEffect
 
-    window.addEventListener("mousemove", onMouseMove);
+  //   useEffect(() => {
+  //     const onMouseMove = e => {
+  //       console.log(e);
+  //     };
 
-    return () => {
-        window.removeEventListener('mousemove', onMouseMove)
-    }
-  }, []);
+  //     window.addEventListener("mousemove", onMouseMove);
+
+  //     return () => {
+  //         window.removeEventListener('mousemove', onMouseMove)
+  //     }
+  //   }, []);
+
+  useFetch("http://numbersapi.com/42");
 
   return (
     <div style={{ marginTop: "2vh" }} className="form">
