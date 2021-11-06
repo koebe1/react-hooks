@@ -19,8 +19,6 @@ export default function Form() {
   //     }
   //   }, []);
 
-  useFetch("http://numbersapi.com/42");
-
   return (
     <div style={{ marginTop: "2vh" }} className="form">
       <input
