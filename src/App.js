@@ -1,11 +1,18 @@
 import "./App.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Button from "./components/button";
 import Form from "./components/form";
 import { ApiData } from "./components/apiData";
 
 const App = () => {
-  const [count, setCount] = useState(0);
+  const state = parseInt(localStorage.getItem("count"));
+  // set to 0 if no state exists ---> else get state from local storage
+  const [count, setCount] = useState(isNaN(state) ? 0 : state);
+
+  //set count to localStorage
+  useEffect(() => {
+    localStorage.setItem("count", count);
+  }, [count]);
 
   const handleChange = () => {
     setCount(curr => (curr += 1));
