@@ -15,10 +15,10 @@ const Button = () => {
       >
         +
       </button>
-      <div style={{ display: "inline", marginLeft: "1vw" }} className="App">
+      <div style={{ display: "inline", marginLeft: "1vw" }} >
         count 1: {count1}
       </div>
-      <div style={{ display: "inline", marginLeft: "1vw" }} className="App">
+      <div style={{ display: "inline", marginLeft: "1vw" }} >
         count 2: {count2}
       </div>
     </div>
