@@ -7,17 +7,12 @@ export const useFetch = url => {
   const [data, setData] = useState(null);
 
   useEffect(async () => {
-      
-    setLoading(true);
-    setData(null);
-
     try {
       const res = await fetch(url);
       const text = await res.text();
 
       setData(text);
       setLoading(false);
-
     } catch (err) {
       console.log(err);
     }
