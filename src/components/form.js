@@ -6,6 +6,10 @@ export default function Form() {
   const [focus, setFocus] = useState(null);
   const emailRef = useRef();
   const passwordRef = useRef();
+  // save number of renders
+  const renders = useRef(0);
+  // increment of renders.current does not cause a rerender! 
+  console.log(`Form rendered: ${renders.current++} time.`);
 
   const handleFocus = () => {
     if (!focus) {
