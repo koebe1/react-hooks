@@ -7,7 +7,8 @@ import { ApiData } from "./components/apiData";
 const App = () => {
   const state = parseInt(localStorage.getItem("count"));
   // set to 0 if no state exists ---> else get state from local storage
-  const [count, setCount] = useState(isNaN(state) ? 0 : state);
+  // initial state argument to set initial state gets disregarded on subsequent rerenders
+  const [count, setCount] = useState(() => (isNaN(state) ? 0 : state));
 
   //set count to localStorage
   useEffect(() => {

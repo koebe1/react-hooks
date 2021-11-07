@@ -1,9 +1,26 @@
-import React, { useEffect } from "react";
+import React, { useRef, useState } from "react";
 import { useForm } from "./useForm";
-import { useFetch } from "./useFetch";
 
 export default function Form() {
   const [values, handleChange] = useForm({ email: "", password: "" });
+  const [focus, setFocus] = useState(null);
+  const emailRef = useRef();
+  const passwordRef = useRef();
+
+  const handleFocus = () => {
+    if (!focus) {
+      emailRef.current.focus();
+      setFocus("email");
+    } else {
+      if (focus === "password") {
+        emailRef.current.focus();
+        setFocus("email");
+      } else {
+        passwordRef.current.focus();
+        setFocus("password");
+      }
+    }
+  };
 
   // set event listener with useEffect
 
@@ -22,18 +39,21 @@ export default function Form() {
   return (
     <div style={{ marginTop: "2vh" }} className="form">
       <input
+        ref={emailRef}
         name="email"
         value={values.email}
         onChange={handleChange}
         placeholder="email"
       />
       <input
+        ref={passwordRef}
         type="password"
         name="password"
         value={values.password}
         onChange={handleChange}
         placeholder="password"
       />
+      <button onClick={handleFocus}>Switch Focus</button>
     </div>
   );
 }
