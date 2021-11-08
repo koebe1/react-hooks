@@ -7,17 +7,20 @@ export const useFetch = url => {
   const [data, setData] = useState(null);
 
   useEffect(() => {
-    return async () => {
+    const fetchQuote =  async () => {
       try {
+        console.log("not fetched");
         const res = await fetch(url);
         const text = await res.text();
 
         setData(text);
         setLoading(false);
       } catch (err) {
-        console.log(err.message );
+        console.log(err.message);
       }
     };
+
+    fetchQuote();
   }, [url]);
 
   return {
