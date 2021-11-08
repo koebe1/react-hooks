@@ -8,7 +8,7 @@ export default function Form() {
   const passwordRef = useRef();
   // save number of renders
   const renders = useRef(0);
-  // increment of renders.current does not cause a rerender! 
+  // increment of renders.current does not cause a rerender!
   console.log(`Form rendered: ${renders.current++} time.`);
 
   const handleFocus = () => {
@@ -42,22 +42,24 @@ export default function Form() {
 
   return (
     <div style={{ marginTop: "2vh" }} className="form">
-      <input
-        ref={emailRef}
-        name="email"
-        value={values.email}
-        onChange={handleChange}
-        placeholder="email"
-      />
-      <input
-        ref={passwordRef}
-        type="password"
-        name="password"
-        value={values.password}
-        onChange={handleChange}
-        placeholder="password"
-      />
-      <button onClick={handleFocus}>Switch Focus</button>
+      <form>
+        <input
+          ref={emailRef}
+          name="email"
+          value={values.email}
+          onChange={handleChange}
+          placeholder="email"
+        />
+        <input
+          ref={passwordRef}
+          type="password"
+          name="password"
+          value={values.password}
+          onChange={handleChange}
+          placeholder="password"
+        />
+        <button onClick={handleFocus}>Switch Focus</button>
+      </form>
     </div>
   );
 }

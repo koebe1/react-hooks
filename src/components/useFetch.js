@@ -15,7 +15,7 @@ export const useFetch = url => {
         setData(text);
         setLoading(false);
       } catch (err) {
-        console.log(err);
+        console.log(err.message );
       }
     };
   }, [url]);
