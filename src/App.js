@@ -1,52 +1,20 @@
 import "./App.css";
-import React, { useState, useEffect } from "react";
-import Button from "./components/button";
-import Form from "./components/form";
-import { ApiData } from "./components/apiData";
-import { DisplayUsers } from "./components/displayUsers";
-import { UserContext } from "./components/UserContext.js";
+import React, { useState, useCallback } from "react";
+import { Hello } from "./components/Hello";
 
 const App = () => {
-  const state = parseInt(localStorage.getItem("count"));
-  const [user, setUser] = useState(null);
-  // set to 0 if no state exists ---> else get state from local storage
-  // initial state argument to set initial state gets disregarded on subsequent rerenders
-  const [count, setCount] = useState(() => (isNaN(state) ? 0 : state));
+  const [count, setCount] = useState(0);
 
-  console.log(count);
-  //set count to localStorage
-  useEffect(() => {
-    localStorage.setItem("count", count);
-  }, [count]);
-
-  // call random user api to create user
-  useEffect(() => {
-    const fetchUser = async url => {
-      try {
-        const res = await fetch(url);
-        const userData = await res.json();
-        setUser(userData);
-      } catch (err) {
-        console.error(err);
-      }
-    };
-
-    fetchUser("https://randomuser.me/api/");
-  }, []);
-
-  const handleChange = () => {
-    setCount(curr => (curr += 1));
-  };
+  // function now only gets recreated if count or setCount changes
+  const increment = useCallback(() => {
+    setCount(prev => prev + 1);
+  }, [setCount]);
 
   return (
-    <div style={{ paddingLeft: "2vw" }}>
-      <Form />
-      <Button count={count} handleChange={handleChange} />
-      <ApiData count={count} />
+    <div style={{ marginLeft: "2vw", marginTop: "2vw" }}>
+      <Hello increment={increment} />
 
-      <UserContext.Provider value={user}>
-        <DisplayUsers />
-      </UserContext.Provider>
+      <div>count: {count} </div>
     </div>
   );
 };
